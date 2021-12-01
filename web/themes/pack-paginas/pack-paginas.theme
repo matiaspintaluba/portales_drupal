@@ -1,0 +1,9 @@
+<?php
+
+function pack_paginas_preprocess(&$variables) {
+
+  $variables['theme_path'] = base_path() . $variables['directory'];
+
+  $variables['current_path'] =\Drupal::service('path.current')->getPath();  
+
+}
