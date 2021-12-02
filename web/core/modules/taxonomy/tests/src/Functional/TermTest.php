@@ -177,9 +177,9 @@ class TermTest extends TaxonomyTestBase {
     // Get Page 3. No parent term and no terms <18 are displayed. Terms 18-25
     // are displayed.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/overview', ['query' => ['page' => 2]]);
-    $this->assertNoText($term1->getName());
+    $this->assertSession()->pageTextNotContains($term1->getName());
     for ($x = 1; $x <= 17; $x++) {
-      $this->assertNoText($terms_array[$x]->getName());
+      $this->assertSession()->pageTextNotContains($terms_array[$x]->getName());
     }
     for ($x = 18; $x <= 25; $x++) {
       $this->assertSession()->pageTextContains($terms_array[$x]->getName());
@@ -209,7 +209,7 @@ class TermTest extends TaxonomyTestBase {
     $this->drupalGet('node/' . $node->id());
     $this->assertSession()->pageTextContains($term1->getName());
 
-    $this->clickLink(t('Edit'));
+    $this->clickLink('Edit');
     $this->assertSession()->pageTextContains($term1->getName());
     $this->submitForm([], 'Save');
     $this->assertSession()->pageTextContains($term1->getName());
@@ -267,7 +267,7 @@ class TermTest extends TaxonomyTestBase {
 
     // Verify the placeholder is there.
     $this->drupalGet('node/add/article');
-    $this->assertRaw('placeholder="Start typing here."');
+    $this->assertSession()->responseContains('placeholder="Start typing here."');
 
     // Preview and verify the terms appear but are not created.
     $this->submitForm($edit, 'Preview');
@@ -311,7 +311,7 @@ class TermTest extends TaxonomyTestBase {
 
     // Delete term 1 from the term edit page.
     $this->drupalGet('taxonomy/term/' . $term_objects['term1']->id() . '/edit');
-    $this->clickLink(t('Delete'));
+    $this->clickLink('Delete');
     $this->submitForm([], 'Delete');
 
     // Delete term 2 from the term delete page.
@@ -325,8 +325,8 @@ class TermTest extends TaxonomyTestBase {
     foreach ($term_names as $term_name) {
       $this->assertSession()->pageTextContains($term_name);
     }
-    $this->assertNoText($term_objects['term1']->getName());
-    $this->assertNoText($term_objects['term2']->getName());
+    $this->assertSession()->pageTextNotContains($term_objects['term1']->getName());
+    $this->assertSession()->pageTextNotContains($term_objects['term2']->getName());
   }
 
   /**
@@ -353,10 +353,10 @@ class TermTest extends TaxonomyTestBase {
     // Submitting a term takes us to the add page; we need the List page.
     $this->drupalGet('admin/structure/taxonomy/manage/' . $this->vocabulary->id() . '/overview');
 
-    $this->clickLink(t('Edit'));
+    $this->clickLink('Edit');
 
     // Verify that the randomly generated term is present.
-    $this->assertRaw($edit['name[0][value]']);
+    $this->assertSession()->pageTextContains($edit['name[0][value]']);
     $this->assertSession()->pageTextContains($edit['description[0][value]']);
 
     $edit = [
@@ -401,7 +401,7 @@ class TermTest extends TaxonomyTestBase {
 
     // Delete the term.
     $this->drupalGet('taxonomy/term/' . $term->id() . '/edit');
-    $this->clickLink(t('Delete'));
+    $this->clickLink('Delete');
     $this->submitForm([], 'Delete');
 
     // Assert that the term no longer exists.
@@ -591,10 +591,10 @@ class TermTest extends TaxonomyTestBase {
 
     // Check that the term is displayed when editing and saving the node with no
     // changes.
-    $this->clickLink(t('Edit'));
-    $this->assertRaw($term->getName());
+    $this->clickLink('Edit');
+    $this->assertSession()->responseContains($term->getName());
     $this->submitForm([], 'Save');
-    $this->assertRaw($term->getName());
+    $this->assertSession()->responseContains($term->getName());
   }
 
   /**
