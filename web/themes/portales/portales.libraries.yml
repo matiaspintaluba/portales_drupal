@@ -1,0 +1,13 @@
+global-css: 
+  css:
+    theme:
+      # css principal
+      assets/css/styles.min.css: {}
+
+global-js:
+  js:
+    # Custom Script
+    assets/js/script.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

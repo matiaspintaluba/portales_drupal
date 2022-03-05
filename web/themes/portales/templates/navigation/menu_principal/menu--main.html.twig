@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Theme override to display a menu.
+ *
+ * Available variables:
+ * - menu_name: The machine name of the menu.
+ * - items: A nested list of menu items. Each menu item contains:
+ *   - attributes: HTML attributes for the menu item.
+ *   - below: The menu item child items.
+ *   - title: The menu link title.
+ *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - localized_options: Menu link localized options.
+ *   - is_expanded: TRUE if the link has visible children within the current
+ *     menu tree.
+ *   - is_collapsed: TRUE if the link has children within the current menu tree
+ *     that are not currently visible.
+ *   - in_active_trail: TRUE if the link is in the active trail.
+ */
+#}
+{% import _self as menus %}
+
+{#
+  We call a macro which calls itself to render the full tree.
+  @see https://twig.symfony.com/doc/1.x/tags/macro.html
+#}
+
+<nav class="navbar navbar-expand-lg shadow-sm" id="navbar-center"> 
+  <div class="container">
+    <div class="w-100 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+      
+      <a class="navbar-brand" href="{{ url('<front>') }}"> 
+        <img src="/{{ directory }}/assets/img//logo.png" alt="Logo IMG" class="img-fluid">
+      </a>
+      <a href="#" class="btn btn-primary ml-2 ms-auto d-lg-none d-block"> botón CTA </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList-center" aria-controls="navbarList-center" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="bi bi-list"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarList-center">
+
+
+        {{ menus.menu_links(items, attributes, 0) }}
+
+        <a href="#" class="btn btn-primary ml-2"> botón CTA </a>
+      
+      </div>
+      
+    </div>
+  </div>
+</nav>
+
+        {% macro menu_links(items, attributes, menu_level) %}
+          {% import _self as menus %}
+          {% if items %}
+            {% if menu_level == 0 %}
+              <ul{{ attributes.addClass("navbar-nav mx-auto") }}>
+            {% else %}
+              <ul class="navbar-nav mx-auto">
+            {% endif %}
+            {% for item in items %}
+              <li{{ item.attributes.addClass("nav-item") }}>
+                <a class="nav-link" href="{{ item.url }}">{{ item.title|upper }}</a>
+                {#{{ link(item.title, item.url) }}#}
+                {% if item.below %}
+                  {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+                {% endif %}
+              </li>
+            {% endfor %}
+            </ul>
+          {% endif %}
+        {% endmacro %}

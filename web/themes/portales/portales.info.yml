@@ -1,0 +1,16 @@
+name: Portales
+type: theme
+description: 'Theme Portales'
+version: '1.0'
+base theme: stable
+core_version_requirement: ^8 || ^9
+libraries:
+  - portales/global-css
+regions:
+  cuenta_usuario: 'Cuenta usuario'
+  menu_principal: 'Menú principal'
+  breadcrumb: 'Breadcrumb'
+  home: 'Home'
+  content: 'Contenido'
+  footer: 'Footer'
+  deshabilitados: 'Deshabilitados'

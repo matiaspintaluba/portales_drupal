@@ -20,7 +20,15 @@
         "drupal/core-composer-scaffold": "^9.2",
         "drupal/core-project-message": "^9.2",
         "drupal/core-recommended": "^9.2",
-        "drush/drush": "^10"
+        "drupal/ctools": "^3.7",
+        "drupal/devel": "^4.1",
+        "drupal/image_effects": "^3.2",
+        "drupal/image_widget_crop": "^2.3",
+        "drupal/pathauto": "^1.9",
+        "drupal/twig_tweak": "^3.1",
+        "drupal/webform": "^6.1",
+        "drush/drush": "^10",
+        "kint-php/kint": "^4.1"
     },
     "conflict": {
         "drupal/drupal": "*"
