@@ -32,7 +32,7 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<div role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').addClass("navbar-expand-lg navbar-blue") }} style="padding-top:0.5em;padding-bottom:0.5em;background-color:#FFB617;">
+{#<div role="navigation" aria-labelledby="{{ heading_id }}"{{ attributes|without('role', 'aria-labelledby').addClass("navbar-expand-lg navbar-blue") }} style="padding-top:0.5em;padding-bottom:0.5em;background-color:#FFB617;">#}
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
@@ -42,7 +42,7 @@
   {{ title_suffix }}
 
   {# Menu. #}
-  {% block content %}
+{#  {% block content %}
     {{ content }}
   {% endblock %}
-</div>
+</div>#}

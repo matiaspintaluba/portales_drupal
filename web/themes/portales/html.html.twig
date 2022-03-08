@@ -84,11 +84,16 @@
       {# Barra Administración de Drupal #}
       {{ page_top }}
 
-      {# Menú superior #}
-      {{ page.cuenta_usuario }}
+      {# Menú cuenta de usuario #}
+      {#{{ page.cuenta_usuario }}#}
 
-      {# Menú principal #}
-      {{ page.menu_principal }}
+      <header>
+        <!-- Navbar -->
+        <div data-include="navbar-basic">
+          {# Menú principal #}
+          {{ page.menu_principal }}
+        </div>
+      </header>
 
       {# Contenido #}
       {{ page }}
