@@ -70,7 +70,49 @@
  *   in different view modes.
  */
 #}
-<article{{ attributes }}>
+
+		<!-- Título de Página -->
+    <section class="header-interno">
+      <div class="container">
+				<span class="date"> {{ content.field_fecha }} </span>
+        <div class="content-text">
+          <h1> {{ elements["#title"]|striptags|trim }} </h1>
+        </div>
+    
+        {# Bradcrumb #}
+        {{ drupal_breadcrumb() }}
+    
+      </div>
+    </section>
+
+    <div {{ attributes.addClass("modulo-noticia-ampliada") }}>
+      <div class="container">
+
+        <div class="content-noticia"> 
+
+          {% include '@portales/includes/social-media.html.twig' %}
+
+          <!-- Contenido de Noticia -->
+          <div class="noticia">
+            
+            {# Si la Noticia no tiene resumen, no se imprime nada#}
+            {% if drupal_field('body', 'node', node.id, 'teaser').0["#defaults_loaded"] != true %}
+              <p class="descripcion"> {{ drupal_field('body', 'node', node.id, 'teaser') }} </p>
+            {% endif %}
+            
+            <img src="{{ content.field_imagen.0["#markup"] }}" class="img-fluid img-noticia" alt="Imagen de noticia.">
+            
+            <p> {{ content.body }}  </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+
+{#<article{{ attributes }}>
 
   {{ title_prefix }}
   {% if not page %}
@@ -94,4 +136,4 @@
     {{ content }}
   </div>
 
-</article>
+</article>#}

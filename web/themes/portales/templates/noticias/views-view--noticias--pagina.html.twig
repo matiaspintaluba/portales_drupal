@@ -35,40 +35,70 @@
     dom_id ? 'js-view-dom-id-' ~ dom_id,
   ]
 %}
-<div{{ attributes.addClass(classes).addClass("cards-list") }}>
-  {{ title_prefix }}
-  {{ title }}
-  {{ title_suffix }}
 
-  {% if header %}
-    <header>
-      {{ header }}
-    </header>
-  {% endif %}
+<section class="header-interno">
 
-  {{ exposed }}
-  {{ attachment_before }}
+  <div class="container">
 
-  {% if rows -%}
-    {{ rows }}
-  {% elseif empty -%}
-    {{ empty }}
-  {% endif %}
-  {{ pager }}
-
-  {{ attachment_after }}
-  {{ more }}
-
-  {% if footer %}
-    <footer>
-      {{ footer }}
-    </footer>
-  {% endif %}
-
-  {{ feed_icons }}
-
-</div>
-
-    <div class="section-cta">
-      <a href="/noticias" class="btn btn-lg btn-primary"> Ver todas las noticias <i class="bi bi-arrow-right-short"></i> </a> 
+    <div class="content-text">
+      <h1> Lista de noticias </h1>
     </div>
+
+    <!-- Breadcrumb -->
+    <div class="content-breadcrumb">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="/">Inicio</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Noticias</li>
+        </ol>
+      </nav>
+    </div>
+    <!-- Fin breadcrumb -->
+
+  </div>
+
+</section>
+
+
+{{ drupal_view('noticias', 'destacadas') }}
+
+
+<section class="modulo-lista-noticias modulo-lista-noticias-interno">
+  <div class="container">
+
+    <div{{ attributes.addClass(classes).addClass("cards-list") }}>
+      {{ title_prefix }}
+      {{ title }}
+      {{ title_suffix }}
+
+      {% if header %}
+        <header>
+          {{ header }}
+        </header>
+      {% endif %}
+
+      {{ exposed }}
+      {{ attachment_before }}
+
+      {% if rows -%}
+        {{ rows }}
+      {% elseif empty -%}
+        {{ empty }}
+      {% endif %}
+      {{ pager }}
+
+      {{ attachment_after }}
+      {{ more }}
+
+      {% if footer %}
+        <footer>
+          {{ footer }}
+        </footer>
+      {% endif %}
+
+      {{ feed_icons }}
+
+    </div>
+
+  </div>
+</div>

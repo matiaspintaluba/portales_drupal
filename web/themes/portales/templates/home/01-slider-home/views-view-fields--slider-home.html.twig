@@ -41,6 +41,9 @@
         <div class="carousel-caption container">
           <h1> {{ fields.title.content }} </h1>
           <p> {{ fields.body.content }} </p>
+          {% if fields.field_enlace.content|striptags|trim != ""%}
+          <a href="{{ fields.field_enlace.content|striptags|trim }}" class="btn btn-lg btn-primary"> {{ fields.field_enlace_1.content }} <i class="bi bi-arrow-right-short"></i> </a>
+          {% endif %}
         </div>
       </div>
 

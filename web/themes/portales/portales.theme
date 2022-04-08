@@ -8,9 +8,20 @@ function portales_preprocess(&$variables) {
 }
 
 
-
-
-
+/**
+ * Implements hook_preprocess_breadcrumb().
+ * 
+ * Se agrega el nodo actual al breadcrumb
+ * 
+ */
+function portales_preprocess_breadcrumb(&$variables){
+  if(($node = \Drupal::routeMatch()->getParameter('node')) && $variables['breadcrumb']){
+    $variables['breadcrumb'][] = array(
+     'text' => $node->getTitle()
+     
+   );
+  }
+}
 
 
 
