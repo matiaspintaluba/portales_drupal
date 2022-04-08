@@ -31,11 +31,11 @@ class Kint extends DevelDumperBase {
    */
   protected function configure() {
     // Remove resource-hungry plugins.
-    /*\Kint::$plugins = array_diff(\Kint::$plugins, [
+    \Kint::$plugins = array_diff(\Kint::$plugins, [
       'Kint\\Parser\\ClassMethodsPlugin',
       'Kint\\Parser\\ClassStaticsPlugin',
       'Kint\\Parser\\IteratorPlugin',
-    ]);*/
+    ]);
     \Kint::$aliases = $this->getInternalFunctions();
 
     RichRenderer::$folder = FALSE;

@@ -25,29 +25,30 @@
   @see https://twig.symfony.com/doc/1.x/tags/macro.html
 #}
 
-<nav class="navbar navbar-expand-lg shadow-sm" id="navbar-center"> 
+<nav class="navbar navbar-expand-lg shadow-sm" id="navbar-basic{#center#}"> 
   <div class="container">
-    <div class="w-100 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">
+    {#<div class="w-100 d-flex flex-wrap align-items-center justify-content-center justify-content-md-between">#}
       
       <a class="navbar-brand" href="{{ url('<front>') }}"> 
         <img src="/{{ directory }}/assets/img//logo.png" alt="Logo IMG" class="img-fluid">
       </a>
       <a href="#" class="btn btn-primary ml-2 ms-auto d-lg-none d-block"> botón CTA </a>
 
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList-center" aria-controls="navbarList-center" aria-expanded="false" aria-label="Toggle navigation">
+      {#<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList-center" aria-controls="navbarList-center" aria-expanded="false" aria-label="Toggle navigation">#}
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarList-basic" aria-controls="navbarList-basic" aria-expanded="false" aria-label="Toggle navigation">
         <span class="bi bi-list"></span>
       </button>
   
-      <div class="collapse navbar-collapse" id="navbarList-center">
-
+      {#<div class="collapse navbar-collapse" id="navbarList-center">#}
+      <div class="collapse navbar-collapse justify-content-end" id="navbarList-basic">
 
         {{ menus.menu_links(items, attributes, 0) }}
 
-        <a href="#" class="btn btn-primary ml-2"> botón CTA </a>
+        <a href="#" class="btn btn-primary ml-2 d-lg-block d-none"> botón CTA </a>
       
       </div>
       
-    </div>
+    {#</div>#}
   </div>
 </nav>
 
@@ -55,9 +56,11 @@
           {% import _self as menus %}
           {% if items %}
             {% if menu_level == 0 %}
-              <ul{{ attributes.addClass("navbar-nav mx-auto") }}>
+              {#<ul{{ attributes.addClass("navbar-nav mx-auto") }}>#}
+              <ul{{ attributes.addClass("navbar-nav") }}>
             {% else %}
-              <ul class="navbar-nav mx-auto">
+              {#<ul class="navbar-nav mx-auto">-->#}
+              <ul class="navbar-nav">
             {% endif %}
             {% for item in items %}
               <li{{ item.attributes.addClass("nav-item") }}>

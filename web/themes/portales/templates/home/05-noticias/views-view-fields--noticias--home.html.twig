@@ -29,7 +29,8 @@
  * @see template_preprocess_views_view_fields()
  */
 #}
-      {% set nodeUrl = "node/" ~ fields.nid.content|striptags|trim %}
+
+      {% set nodeUrl = fields.view_node.content|striptags|trim %}
       <div class="card-novedad shadow-sm">
         <a href="{{ nodeUrl }}" class="link">
           <img src="{{ fields.field_imagen.content|striptags|trim }}" class="img-fluid" alt="{{ fields.field_imagen_1.content|striptags|trim }}">
